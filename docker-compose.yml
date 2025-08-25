@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:15
+    container_name: grid-db
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-root}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - grid-data:/var/lib/postgresql/data
+
+volumes:
+  grid-data:
