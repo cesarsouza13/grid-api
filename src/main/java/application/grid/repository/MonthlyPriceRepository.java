@@ -13,7 +13,7 @@ public interface MonthlyPriceRepository extends JpaRepository<MonthlyPrice, Long
 
     Optional<MonthlyPrice> findTopByOrderByDateDesc();
 
-    List<MonthlyPrice> findByDateAfterOrderByDateDesc(LocalDate startDate);
+    List<MonthlyPrice> findByDateAfterOrderByDateAsc(LocalDate startDate);
 
     boolean existsByDate(LocalDate date);
 }
