@@ -48,7 +48,7 @@ public class ReportService {
 
     public List<MonthlyPrice> getLast12Months() {
         LocalDate startDate = LocalDate.now().minusMonths(12).withDayOfMonth(1);
-        return monthlyPriceRepository.findByDateAfterOrderByDateDesc(startDate);
+        return monthlyPriceRepository.findByDateAfterOrderByDateAsc(startDate);
     }
 
     private String capitalize(String str) {
@@ -103,8 +103,10 @@ public class ReportService {
 
         LocalDate firstOfCurrentMonth = LocalDate.now().withDayOfMonth(1);
         LocalDate lastClosedMonth = firstOfCurrentMonth.minusMonths(1);
+        //Avalia se a data mais recente no banco está antiga
         if (latestRecordDate.isBefore(lastClosedMonth)) {
 
+            //Calcula periodo de busca de dados
             int monthsToFetch = (int) ChronoUnit.MONTHS.between(latestRecordDate.withDayOfMonth(1), lastClosedMonth.withDayOfMonth(1)) + 1;
             monthsToFetch = Math.min(monthsToFetch, 12);
 
