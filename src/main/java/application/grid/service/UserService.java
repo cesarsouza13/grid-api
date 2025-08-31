@@ -4,9 +4,11 @@ package application.grid.service;
 import application.grid.domain.dto.request.UserDTORequest;
 import application.grid.domain.dto.response.UserDTOResponse;
 import application.grid.domain.entity.User;
+import application.grid.domain.exception.ApiException;
 import application.grid.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -40,7 +42,14 @@ public class UserService implements UserDetailsService {
         user.setLogin(userDTO.getLogin());
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         user.setName(userDTO.getName());
-        userRepository.save(user);
+
+        try {
+            userRepository.save(user);
+        } catch (DataIntegrityViolationException e) {
+            // Aqui você sabe que pode ser UNIQUE violation do "name"
+            throw new ApiException("Este login já está em uso") {
+            };
+        }
     }
 
     // Editar usuário
