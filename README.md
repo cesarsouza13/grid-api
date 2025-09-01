@@ -79,6 +79,6 @@ Conectar ao PostgreSQL definido no .env
 Executar todas as migrations do Flyway automaticamente
 
 A aplicação estará rodando por padrão em:
-http://localhost:8080
+http://localhost:8081
 
 
