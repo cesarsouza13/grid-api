@@ -7,7 +7,7 @@ services:
       POSTGRES_USER: ${DB_USERNAME:-postgres}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-root}
     ports:
-      - "${DB_PORT:-5433}:5433"
+      - "5433:5432"   # porta externa da VPS diferente do outro DB
     volumes:
       - grid-data:/var/lib/postgresql/data
 
@@ -19,7 +19,7 @@ services:
       DB_NAME: ${DB_NAME}
       DB_USERNAME: ${DB_USERNAME:-postgres}
       DB_PASSWORD: ${DB_PASSWORD:-root}
-      DB_PORT: ${DB_PORT:-5433}
+      DB_PORT: ${DB_PORT:-5432}
       DB_HOST: db
       API_SECRET: ${API_SECRET:-default-secret}
       GRID_UI: ${GRID_UI:-http://localhost:5173}
