@@ -19,7 +19,7 @@ api:
     token:
       secret: ${API_SECRET:default-secret} # valor default opcional
   cors:
-    allowed-origins: ${GRID_UI:http://localhost:5173}
+    allowed-origins: ${GRID_UI}
 
 ccee:
   base-url: "https://www.ccee.org.br/web/guest/precos/painel-precos"
