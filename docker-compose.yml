@@ -7,7 +7,7 @@ services:
       POSTGRES_USER: ${DB_USERNAME:-postgres}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-root}
     ports:
-      - "5433:5432"   # porta externa da VPS diferente do outro DB
+      - "5432:5432"  # porta externa da VPS diferente do outro DB
     volumes:
       - grid-data:/var/lib/postgresql/data
 
