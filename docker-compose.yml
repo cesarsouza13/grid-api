@@ -15,7 +15,7 @@ services:
     build: .
     container_name: grid-app
     environment:
-      SPRING_PROFILES_ACTIVE: prod
+      SPRING_PROFILES_ACTIVE: ddv
       DB_NAME: ${DB_NAME}
       DB_USERNAME: ${DB_USERNAME:-postgres}
       DB_PASSWORD: ${DB_PASSWORD:-root}
